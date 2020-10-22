@@ -1,16 +1,21 @@
 import TodoInput from "./TodoInput.js";
 
 class App {
-  #$target;
+  todoList = []; //멤버변수 의미.
+
   constructor($target) {
-    this.#$target = $target;
-    console.log(this.#$target);
+    this.$target = $target;
+    console.log(this.$target);
     this.render();
     this.initComponents();
   }
 
+  addTodo = (item) => {
+    this.todoList = [...this.todoList, item];
+  }
+
   render() {
-    this.#$target.innerHTML = `
+    this.$target.innerHTML = `
         <h1>TODOS</h1>
         <main>
             <input
@@ -27,7 +32,7 @@ class App {
 
   initComponents() {
     this.todoInput = new TodoInput(
-      this.#$target.querySelector("#new-todo-title")
+      this.$target.querySelector("new-todo-title")
     );
   }
 }
