@@ -10,9 +10,19 @@ class App {
     this.initComponents();
   }
 
-  addTodo = (item) => {
-    this.todoList = [...this.todoList, item];
+  createTodo(contents) {
+    return {
+      _id: Date.now().toString() + Math.floor(Math.random() * 1000),
+      contents,
+      isCompleted: false,
+    };
   }
+
+  addTodo = (contents) => {
+    const newTodo = this.createTodo(contents);
+    this.todoList = [...this.todoList, newTodo];
+    console.log(this.todoList);
+  };
 
   render() {
     this.$target.innerHTML = `
@@ -32,7 +42,8 @@ class App {
 
   initComponents() {
     this.todoInput = new TodoInput(
-      this.$target.querySelector("new-todo-title")
+      this.$target.querySelector("#new-todo-title"),
+      { addTodo: (contents) => this.addTodo(contents) }
     );
   }
 }
