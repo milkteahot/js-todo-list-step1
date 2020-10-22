@@ -2,11 +2,10 @@ import TodoInput from "./TodoInput.js";
 import TodoList from "./TodoList.js";
 
 class App {
-  todoList = []; //멤버변수 의미.
+  todos = []; //멤버변수 의미.
 
   constructor($target) {
     this.$target = $target;
-    console.log(this.$target);
     this.render();
     this.initComponents();
   }
@@ -21,8 +20,8 @@ class App {
 
   addTodo = (contents) => {
     const newTodo = this.createTodo(contents);
-    this.todoList = [...this.todoList, newTodo];
-    console.log(this.todoList);
+    this.todos = [...this.todos, newTodo];
+    this.todoList.setState({ todos: this.todos });
   };
 
   render() {
@@ -46,6 +45,9 @@ class App {
       this.$target.querySelector("#new-todo-title"),
       { addTodo: (contents) => this.addTodo(contents) }
     );
+    this.todoList = new TodoList(this.$target.querySelector("#todo-list"), {
+      todos: this.todos,
+    });
   }
 }
 
