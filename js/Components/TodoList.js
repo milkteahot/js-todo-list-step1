@@ -13,7 +13,7 @@ class TodoList {
   render() {
     const todoHTML = this.state.todos
       .map(
-        ({ _id, isComplelted, contents }) =>
+        ({ _id, isCompleted, contents }) =>
           `<li data-id=${_id} class="todo-list"> ${contents}</li>`
       )
       .join("");
