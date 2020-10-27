@@ -41,6 +41,6 @@ function check(event){
     const checked = event.target.checked;
     checked ? "true" : "false";
 
-    const completed = document.querySelector('li').class
+    // const completed = document.querySelector('li').class
     
 }
